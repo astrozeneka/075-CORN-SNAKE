@@ -1,17 +1,17 @@
 Bootstrap: docker
-From: continuumio/miniconda3
+From: ubuntu:20.04
 
 %post
 	# Install ubuntu development tools
 	apt-get update
-	apt-get install -y build-essential
+	apt-get install -y build-essential libz-dev zlib1g-dev git wget
 
 	# Install bwa
 	wget https://sourceforge.net/projects/bio-bwa/files/bwa-0.7.15.tar.bz2
 	tar xjvf bwa-0.7.15.tar.bz2
 	cd bwa-0.7.15
 	make
-	make install
+	ls
 
 %environment
 	#
@@ -20,4 +20,5 @@ From: continuumio/miniconda3
 	#
 
 %runscript
+	./bwa  --version
 	which bwa
