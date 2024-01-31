@@ -7,13 +7,12 @@
 #SBATCH -A proj5034
 
 # Load the plink binary
-export PATH=$PATH:/tarafs/data/home/hrasoara/proj5057-AGBKUB/ryan/Softwares
+# export PATH=$PATH:/tarafs/data/home/hrasoara/proj5057-AGBKUB/ryan/Softwares
 
 mkdir -p data/plink
-plink --allow-extra-chr --make-bed --double-id --threads 96 \
+/tarafs/data/home/hrasoara/proj5057-AGBKUB/ryan/Softwares/plink \
+  --allow-extra-chr --make-bed --double-id --threads 96 \
   --vcf data/populations/populations.snps.vcf \
   --out data/plink/plink
 echo "Plink done"
 
-# Overwrite the plink.fam file
-cat <<EOF > data/plink/plink.fam
