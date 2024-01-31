@@ -6,7 +6,8 @@
 #SBATCH -J plink
 #SBATCH -A proj5034
 
-source ~/.bashrc
+# Load the plink binary
+export PATH=$PATH:/tarafs/data/home/hrasoara/proj5057-AGBKUB/ryan/Softwares
 
 mkdir -p data/plink
 plink --allow-extra-chr --make-bed --double-id --threads 96 \
