@@ -108,3 +108,17 @@ gemma -bfile data/plink/${phenotype}_plink \
   -o gemma_kinship
 echo "Gemma part 1 done"
 
+# 3. Run Gemma Part 2
+echo "Gemma part 2"
+gemma -bfile data/plink/${phenotype}_plink \
+  -p data/${phenotype}_phenos.txt \
+  -k output/gemma_kinship.cXX.txt \
+  -lmm 1 \
+  -o gemma_lmm1
+echo "Gemma part 2 done"
+
+# 4. Store the result
+mkdir -p data/gemma/${phenotype}
+mv ./output/* data/gemma/${phenotype}/
+
+echo "Done"
