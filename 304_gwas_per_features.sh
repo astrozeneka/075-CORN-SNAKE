@@ -12,7 +12,7 @@ phenotype="AMEL"
 mkdir -p data/plink
 
 # create the sample_id list file that will be used by plink using cat and pipe
-cat <<EOF > "${phenotype}_samples.txt"
+cat <<EOF > "data/${phenotype}_samples.txt"
 AMEL_13
 AMEL_28
 AMEL_84

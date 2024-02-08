@@ -18,9 +18,10 @@ fi
 RAW_DATA_DIR="/tarafs/data/home/hrasoara/Projects/075-CORN-SNAKE/data/X401SC21090035-Z01-F001_01/02.Bam"
 REFERENCE="data/reference/GCF_001185365.1_UNIGE_PanGut_3.0_genomic.fna"
 
+mkdir -p data/gatk
 gatk --java-options "-Xmx400G" HaplotypeCaller \
   -R "${REFERENCE}" \
-  -I "${RAW_DATA_DIR}/${genome}.rmdups.bam" \
+  -I "${RAW_DATA_DIR}/${genome}.rmdup.bam" \
   -O data/gatk/${genome}.g.vcf.gz \
   -ERC GVCF
 echo "Haplotype Caller done for ${genome}"
