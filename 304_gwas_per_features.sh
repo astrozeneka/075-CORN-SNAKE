@@ -13,32 +13,32 @@ mkdir -p data/plink
 
 # create the sample_id list file that will be used by plink using cat and pipe
 cat <<EOF > "${phenotype}_samples.txt"
-AMEL_13
-AMEL_28
-AMEL_84
-AMEL_96
-AMEL_97
-AMEL_106
-AMEL_14
-AMEL_15
-AMEL_29
-AMEL_44
-AMEL_51
-AMEL_77
-AMEL_99
-NOR_69
-NOR_7
-NOR_11
-NOR_12
-NOR_4
-NOR_10
-NOR_5
-AMEL_20
-AMEL_23
-AMEL_30
-AMEL_48
-AMEL_71
-NOR_73
+AMEL_13.rmdup AMEL_13.rmdup
+AMEL_28.rmdup AMEL_28.rmdup
+AMEL_84.rmdup AMEL_84.rmdup
+AMEL_96.rmdup AMEL_96.rmdup
+AMEL_97.rmdup AMEL_97.rmdup
+AMEL_106.rmdup AMEL_106.rmdup
+AMEL_14.rumdup AMEL_14.rmdup
+AMEL_15.rumdup AMEL_15.rmdup
+AMEL_29.rumdup AMEL_29.rmdup
+AMEL_44.rumdup AMEL_44.rmdup
+AMEL_51.rumdup AMEL_51.rmdup
+AMEL_77.rumdup AMEL_77.rmdup
+AMEL_99.rumdup AMEL_99.rmdup
+NOR_69.rmdup NOR_69.rmdup
+NOR_7.rmdup NOR_7.rmdup
+NOR_11.rmdup NOR_11.rmdup
+NOR_12.rmdup NOR_12.rmdup
+NOR_4.rmdup NOR_4.rmdup
+NOR_10.rmdup NOR_10.rmdup
+NOR_5.rmdup NOR_5.rmdup
+AMEL_20.rmdup AMEL_20.rmdup
+AMEL_23.rmdup AMEL_23.rmdup
+AMEL_30.rmdup AMEL_30.rmdup
+AMEL_48.rmdup AMEL_48.rmdup
+AMEL_71.rmdup AMEL_71.rmdup
+NOR_73.rmdup NOR_73.rmdup
 EOF
 
 # Run the plink by using the sample_id list file
