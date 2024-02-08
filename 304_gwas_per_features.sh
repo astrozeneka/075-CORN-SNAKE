@@ -48,3 +48,40 @@ EOF
   --keep data/${phenotype}_samples.txt \
   --out data/plink/${phenotype}_plink
 
+cat <<EOF > "data/${phenotype}_phenos.txt"
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+0
+0
+0
+0
+0
+0
+0
+1
+1
+1
+1
+1
+0
+EOF
+
+# 2. Run Gemma Part 1
+echo "Gemma part 1"
+gemma -bfile data/plink/${phenotype}_plink \
+  -gk 1 \
+  -p data/${phenotype}_phenos.txt \
+  -o gemma_kinship
+echo "Gemma part 1 done"
+
