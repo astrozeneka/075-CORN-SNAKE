@@ -61,7 +61,7 @@ LVD_3.rmdup LVD_3.rmdup 0 0 0 2
 NOR_73.rmdup NOR_73.rmdup 0 0 0 1
 EOF
 
-cat<<EOF >data/${phenotype}_plink.fam
+cat<<EOF >data/${phenotype}_phenos.txt
 1
 1
 1
