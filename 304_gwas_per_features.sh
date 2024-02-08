@@ -48,6 +48,29 @@ EOF
   --keep data/${phenotype}_samples.txt \
   --out data/plink/${phenotype}_plink
 
+# update the fam file
+cat <<EOF >data/plink/${phenotype}_plink.fam
+AMEL_106.rmdup AMEL_106.rmdup 0 0 0 2
+AMEL_13.rmdup AMEL_13.rmdup 0 0 0 2
+AMEL_20.rmdup AMEL_20.rmdup 0 0 0 2
+AMEL_23.rmdup AMEL_23.rmdup 0 0 0 2
+AMEL_28.rmdup AMEL_28.rmdup 0 0 0 2
+AMEL_30.rmdup AMEL_30.rmdup 0 0 0 2
+AMEL_48.rmdup AMEL_48.rmdup 0 0 0 2
+AMEL_71.rmdup AMEL_71.rmdup 0 0 0 2
+AMEL_84.rmdup AMEL_84.rmdup 0 0 0 2
+AMEL_96.rmdup AMEL_96.rmdup 0 0 0 2
+AMEL_97.rmdup AMEL_97.rmdup 0 0 0 2
+NOR_10.rmdup NOR_10.rmdup 0 0 0 1
+NOR_11.rmdup NOR_11.rmdup 0 0 0 1
+NOR_12.rmdup NOR_12.rmdup 0 0 0 1
+NOR_4.rmdup NOR_4.rmdup 0 0 0 1
+NOR_5.rmdup NOR_5.rmdup 0 0 0 1
+NOR_69.rmdup NOR_69.rmdup 0 0 0 1
+NOR_73.rmdup NOR_73.rmdup 0 0 0 1
+NOR_7.rmdup NOR_7.rmdup 0 0 0 1
+EOF
+
 cat <<EOF > "data/${phenotype}_phenos.txt"
 1
 1
