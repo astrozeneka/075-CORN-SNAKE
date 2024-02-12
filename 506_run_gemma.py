@@ -1,6 +1,60 @@
 import itertools
 import os
 
+popmap = """AMEL_106.sorted	AMEL
+AMEL_13.sorted	AMEL
+AMEL_14.sorted	AMEL
+AMEL_15.sorted	AMEL
+AMEL_20.sorted	AMEL
+AMEL_23.sorted	AMEL
+AMEL_28.sorted	AMEL
+AMEL_29.sorted	AMEL
+AMEL_30.sorted	AMEL
+AMEL_44.sorted	AMEL
+AMEL_48.sorted	AMEL
+AMEL_51.sorted	AMEL
+AMEL_71.sorted	AMEL
+AMEL_77.sorted	AMEL
+AMEL_84.sorted	AMEL
+AMEL_96.sorted	AMEL
+AMEL_97.sorted	AMEL
+AMEL_99.sorted	AMEL
+CIN_42.sorted	CIN
+HYPO_19.sorted	HYPO
+HYPO_25.sorted	HYPO
+HYPO_26.sorted	HYPO
+HYPO_27.sorted	HYPO
+HYPO_32.sorted	HYPO
+HYPO_34.sorted	HYPO
+HYPO_37.sorted	HYPO
+HYPO_43.sorted	HYPO
+HYPO_47.sorted	HYPO
+HYPO_93.sorted	HYPO
+LVD_102.sorted	LVD
+LVD_16.sorted	LVD
+LVD_17.sorted	LVD
+LVD_18.sorted	LVD
+LVD_21.sorted	LVD
+LVD_22.sorted	LVD
+LVD_24.sorted	LVD
+LVD_33.sorted	LVD
+LVD_3.sorted	LVD
+LVD_45.sorted	LVD
+NOR_10.sorted	NOR
+NOR_11.sorted	NOR
+NOR_12.sorted	NOR
+NOR_4.sorted	NOR
+NOR_5.sorted	NOR
+NOR_69.sorted	NOR
+NOR_73.sorted	NOR
+NOR_7.sorted	NOR
+OPAL_46.sorted	OPAL
+SUN_35.sorted	SUN
+TES_31.sorted	TES
+TES_49.sorted	TES
+TES_8.sorted	TES""".split("\n")
+popmap = [a.split() for a in popmap]
+
 phenotypes = [
     "AMEL",
     "HYPO",
@@ -35,36 +89,13 @@ if __name__ == '__main__':
     for nc in normal_case_list:
         nc['normal'] = list(nc['normal'])
         nc['case'] = list(nc['case'])
+        slug = "_".join(nc['normal']) + "_vs_" + "_".join(nc['case'])
         print(f"Normal: {nc['normal']}, Case: {nc['case']}")
-        sample_list_content = """AMEL_106.sorted\tAMEL_106.sorted
-AMEL_13.sorted\tAMEL_13.sorted
-AMEL_14.sorted\tAMEL_14.sorted
-AMEL_15.sorted\tAMEL_15.sorted
-AMEL_20.sorted\tAMEL_20.sorted
-AMEL_23.sorted\tAMEL_23.sorted
-AMEL_28.sorted\tAMEL_28.sorted
-AMEL_29.sorted\tAMEL_29.sorted
-AMEL_30.sorted\tAMEL_30.sorted
-AMEL_44.sorted\tAMEL_44.sorted
-AMEL_48.sorted\tAMEL_48.sorted
-AMEL_51.sorted\tAMEL_51.sorted
-AMEL_71.sorted\tAMEL_71.sorted
-AMEL_77.sorted\tAMEL_77.sorted
-AMEL_84.sorted\tAMEL_84.sorted
-AMEL_96.sorted\tAMEL_96.sorted
-AMEL_97.sorted\tAMEL_97.sorted
-AMEL_99.sorted\tAMEL_99.sorted
-NOR_10.sorted\tNOR_10.sorted
-NOR_11.sorted\tNOR_11.sorted
-NOR_12.sorted\tNOR_12.sorted
-NOR_4.sorted\tNOR_4.sorted
-NOR_5.sorted\tNOR_5.sorted
-NOR_69.sorted\tNOR_69.sorted
-NOR_73.sorted\tNOR_73.sorted
-NOR_7.sorted\tNOR_7.sorted"""
-        open("data/sample_list.txt", "w").write(sample_list_content)
+        sample_list_content = "\n".join([f"{a[0]}\t{a[1]}" for a in popmap if a[1] in nc['normal'] or a[1] in nc['case']])
+
+        open(f"data/onref_plink/{slug}.samples.txt", "w").write(sample_list_content)
         # Run bash command
-        print(f"bash 505_plink.sh")
-        os.system(f"bash 505_plink.sh")
+        print(f"bash 505_plink.sh {slug}")
+        os.system(f"bash 505_plink.sh {slug}")
         print("Done")
         break
