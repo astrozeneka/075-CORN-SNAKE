@@ -9,7 +9,7 @@ phenotypes = [
     "TES",
     "SUN",
     "CIN",
-    "OPAL",
+    "OPAL"
 ]
 if __name__ == '__main__':
     # The final [normal, case] doesn't contain forcely all phenotypes
@@ -30,6 +30,9 @@ if __name__ == '__main__':
                     if(nc not in normal_case_list):
                         normal_case_list.append(nc)
 
-    # Now, we have the list of normal/case combination that can be used for GWAS analysis
-    # TODO: should include the sex information
-    print()
+    print(f"{len(normal_case_list)} normal/case combinations are available for GWAS analysis.")
+    for nc in normal_case_list:
+        nc['normal'] = list(nc['normal'])
+        nc['case'] = list(nc['case'])
+        print(f"Normal: {nc['normal']}, Case: {nc['case']}")
+        print()
