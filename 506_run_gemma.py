@@ -91,9 +91,24 @@ if __name__ == '__main__':
         nc['case'] = list(nc['case'])
         slug = "_".join(nc['normal']) + "_vs_" + "_".join(nc['case'])
         print(f"Normal: {nc['normal']}, Case: {nc['case']}")
-        sample_list_content = "\n".join([f"{a[0]}\t{a[1]}" for a in popmap if a[1] in nc['normal'] or a[1] in nc['case']])
 
+        # 1. PLINK keep files
+        sample_list_content = "\n".join([f"{a[0]}\t{a[1]}" for a in popmap if a[1] in nc['normal'] or a[1] in nc['case']])
         open(f"data/onref_plink/{slug}.samples.txt", "w").write(sample_list_content)
+
+        # 2. Override the PLINK .fam files
+        fam_content = ""
+        for a in popmap:
+            if a[1] in nc['normal']:
+                fam_content += f"{a[0]}\t{a[0]}\t0\t0\t1\t1\n"
+            elif a[1] in nc['case']:
+                fam_content += f"{a[0]}\t{a[0]}\t0\t0\t2\t2\n"
+        open(f"data/onref_plink/{slug}._fam", "w").write(fam_content)
+
+        # 3. เตรียม phenofile
+        phenofile_content = "\n".join([f"{1 if a[1] in nc['normal'] else 0}" for a in popmap if a[1] in nc['normal'] or a[1] in nc['case']])
+        open(f"data/onref_plink/{slug}.phenofile.txt", "w").write(phenofile_content)
+
         # Run bash command
         print(f"bash 505_plink.sh {slug}")
         os.system(f"bash 505_plink.sh {slug}")
