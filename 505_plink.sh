@@ -16,3 +16,7 @@ slug=$1
   --keep data/onref_plink/${slug}.samples.txt \
   --out data/onref_plink/${slug}
 echo "Plink done"
+
+# Override the fam .file
+mv data/onref_plink/${slug}._fam data/onref_plink/${slug}.fam
+
