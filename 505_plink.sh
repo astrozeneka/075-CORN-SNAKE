@@ -7,6 +7,7 @@
 #SBATCH -A proj5034
 
 export PATH=$PATH:/tarafs/data/home/hrasoara/proj5057-AGBKUB/ryan/Softwares
+conda activate /tarafs/data/home/hrasoara/proj5057-AGBKUB/ryan/conda-envs/gemma
 
 slug=$1
 
@@ -21,14 +22,14 @@ echo "Plink done"
 mv data/onref_plink/${slug}._fam data/onref_plink/${slug}.fam
 
 echo "Gemma part 1"
-gemma -bfile data/plink/${slug} \
+~/proj5057-AGBKUB/ryan/conda-envs/gemma/bin/gemma -bfile data/onref_plink/${slug} \
   -gk 1 \
   -p data/onref_plink/${slug}.phenotype.txt \
   -o gemma_kinship
 echo "Gemma part 1 Done"
 
 echo "Gemma part 2"
-gemma -bfile data/plink/${slug} \
+~/proj5057-AGBKUB/ryan/conda-envs/gemma/bin/gemma -bfile data/onref_plink/${slug} \
   -p data/onref_plink/${slug}.phenotype.txt \
   -k output/gemma_kinship.cXX.txt \
   -lmm 1 \
