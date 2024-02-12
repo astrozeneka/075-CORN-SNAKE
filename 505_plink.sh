@@ -37,4 +37,9 @@ echo "Gemma part 2"
 echo "Gemma part 2 Done"
 
 # Store the results
+mv output/gemma_kinship.cXX.txt data/onref_plink/${slug}.gemma_kinship.cXX.txt
+mv output/gemma_kinship.log.txt data/onref_plink/${slug}.gemma_kinship.log.txt
+mv output/gemma_lmm1.assoc.txt data/onref_plink/${slug}.gemma_lmm1.assoc.txt
+mv output/gemma_lmm1.log.txt data/onref_plink/${slug}.gemma_lmm1.log.txt
+
 echo "Done"
