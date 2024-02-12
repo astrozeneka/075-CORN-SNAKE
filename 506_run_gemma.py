@@ -85,12 +85,24 @@ if __name__ == '__main__':
                     if(nc not in normal_case_list):
                         normal_case_list.append(nc)
 
-    print(f"{len(normal_case_list)} normal/case combinations are available for GWAS analysis.")
+    # Filter the normal/case combinations
+    _tmp = []
     for nc in normal_case_list:
         nc['normal'] = list(nc['normal'])
         nc['case'] = list(nc['case'])
+        normal_count = len([a for a in popmap if a[1] in nc['normal']])
+        case_count = len([a for a in popmap if a[1] in nc['case']])
+        if case_count > 5:
+            _tmp.append(nc)
+    normal_case_list = _tmp
+
+    print(f"{len(normal_case_list)} normal/case combinations are available for GWAS analysis.")
+    for i, nc in enumerate(normal_case_list):
+        print("=====================================")
+        print(f"{i}/{len(normal_case_list)}:" + f"Normal: {nc['normal']}, Case: {nc['case']}")
+        nc['normal'] = list(nc['normal'])
+        nc['case'] = list(nc['case'])
         slug = "_".join(nc['normal']) + "_vs_" + "_".join(nc['case'])
-        print(f"Normal: {nc['normal']}, Case: {nc['case']}")
 
         # 1. PLINK keep files
         sample_list_content = "\n".join([f"{a[0]}\t{a[0]}" for a in popmap if a[1] in nc['normal'] or a[1] in nc['case']])
@@ -113,4 +125,3 @@ if __name__ == '__main__':
         print(f"bash 505_plink.sh {slug}")
         os.system(f"bash 505_plink.sh {slug}")
         print("Done")
-        break
