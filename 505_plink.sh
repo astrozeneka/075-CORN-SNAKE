@@ -20,3 +20,20 @@ echo "Plink done"
 # Override the fam .file
 mv data/onref_plink/${slug}._fam data/onref_plink/${slug}.fam
 
+echo "Gemma part 1"
+gemma -bfile data/plink/${slug} \
+  -gk 1 \
+  -p data/onref_plink/${slug}.phenotype.txt \
+  -o gemma_kinship
+echo "Gemma part 1 Done"
+
+echo "Gemma part 2"
+gemma -bfile data/plink/${slug} \
+  -p data/onref_plink/${slug}.phenotype.txt \
+  -k output/gemma_kinship.cXX.txt \
+  -lmm 1 \
+  -o gemma_lmm1
+echo "Gemma part 2 Done"
+
+# Store the results
+echo "Done"
