@@ -14,5 +14,5 @@ slug=$1
   --allow-extra-chr --make-bed --double-id --threads 96 \
   --vcf data/onref_populations/populations.snps.vcf \
   --keep data/onref_plink/${slug}.samples.txt \
-  --out data/onref_plink/plink
+  --out data/onref_plink/${slug}
 echo "Plink done"

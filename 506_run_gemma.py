@@ -91,7 +91,7 @@ if __name__ == '__main__':
         nc['case'] = list(nc['case'])
         slug = "_".join(nc['normal']) + "_vs_" + "_".join(nc['case'])
         print(f"Normal: {nc['normal']}, Case: {nc['case']}")
-        sample_list_content = "\n".join([f"{a[0]}\t{a[1]}" for a in popmap if a[1] in nc['normal'] or a[1] in nc['case']])
+        sample_list_content = "\n".join([f"{a[0]}\t{a[0]}" for a in popmap if a[1] in nc['normal'] or a[1] in nc['case']])
 
         open(f"data/onref_plink/{slug}.samples.txt", "w").write(sample_list_content)
         # Run bash command
