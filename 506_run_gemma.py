@@ -58,7 +58,6 @@ popmap = [a.split() for a in popmap]
 phenotypes = [
     "AMEL",
     "HYPO",
-    "LVD",
     "NOR",
     "LVD",
     "TES",
